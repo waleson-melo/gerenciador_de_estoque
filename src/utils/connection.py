@@ -57,6 +57,23 @@ class Connection:
             );
         """)
 
+        self.cursor.execute("""
+            CREATE TABLE IF NOT EXISTS "compras" (
+                "pk_id_compra"	INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
+                "valor_total_comp"	REAL NOT NULL,
+                "data_comp"	TEXT NOT NULL 
+            );
+        """)
+
+        self.cursor.execute("""
+            CREATE TABLE IF NOT EXISTS "compra_produto" (
+                "pk_id_compra_produto"	INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
+                "fk_compra"	INTEGER NOT NULL,
+                "fk_produto" INTEGER NOT NULL,
+                "quantidade_produto" INTEGER NOT NULL
+            );
+        """)
+
         self.desconect_db()
 
     def default_data(self):
